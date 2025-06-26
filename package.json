@@ -8,7 +8,8 @@
     "cpdir2": "xcopy .\\rebuild\\libs\\* .\\dist\\libs  /E /H /C /I /Y",
     "dev": "npm run cpdir && npm run cpdir2 && parcel index.html",
     "cpdir3": "xcopy .\\me\\data\\* .\\dist\\data /E /H /C /I /Y",
-    "me-dev": "npm run cpdir3 && parcel index.html"
+    "me-dev": "npm run cpdir3 && parcel index.html",
+    "start": "vite"
   },
   "author": "",
   "license": "ISC",
@@ -22,11 +23,11 @@
     "jquery-ui": "^1.14.1",
     "lodash": "^4.17.21",
     "panolens": "^0.12.1",
-    "parcel": "^2.13.3",
     "potree-core": "^2.0.7",
     "three": "^0.174.0",
     "three-bvh-csg": "^0.0.16",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vite": "^6.3.5"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.32",
