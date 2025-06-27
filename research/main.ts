@@ -15,7 +15,6 @@ class Main {
     }
 
     main() {
-        console.log('aaa')
         this.editor.test()
     }
 }
