@@ -3,6 +3,9 @@ import Editor from '../Editor'
 import { Renderer } from 'three/webgpu'
 import { WebGLRenderer } from 'three'
 
+/**
+ * 渲染器控制
+*/
 export default class RendererManager {
     editor: Editor
 

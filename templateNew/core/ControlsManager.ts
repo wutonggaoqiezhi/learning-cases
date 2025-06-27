@@ -1,6 +1,9 @@
 import { OrbitControls } from "three/examples/jsm/Addons.js";
 import Editor from "../Editor";
 
+/**
+ * 控制轨道控制器
+*/
 export default class ControlsManager {
     editor: Editor
 

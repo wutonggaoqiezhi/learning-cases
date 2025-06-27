@@ -3,6 +3,9 @@ import { Scene, GridHelper } from 'three';
 
 import Editor from '../Editor';
 
+/**
+ * 场景控制
+*/
 export default class SceneManager {
     editor: Editor
 

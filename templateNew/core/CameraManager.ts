@@ -2,6 +2,9 @@ import * as THREE from 'three'
 import { Camera, PerspectiveCamera, OrthographicCamera } from 'three'
 import Editor from '../Editor'
 
+/**
+ * 镜头控制
+*/
 export default class CameraManager {
     editor: Editor
 

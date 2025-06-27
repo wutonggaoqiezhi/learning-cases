@@ -45,6 +45,9 @@ export default class Editor {
         this.rendererManager.current.setAnimationLoop(this.render.bind(this))
     }
 
+    /**
+     * 渲染方法
+    */
     render() {
         this.stats.update()
         this.controlsManager.current.update()
@@ -52,6 +55,9 @@ export default class Editor {
         this.rendererManager.current.render( this.sceneManager.current, this.cameraManager.current )
     }
 
+    /**
+     * 自适应窗口
+    */
     onWindowResize() {
         if( this.cameraManager.current.constructor.name == 'PerspectiveCamera' ) {
             (this.cameraManager.current as THREE.PerspectiveCamera).aspect = window.innerWidth / window.innerHeight
@@ -62,6 +68,9 @@ export default class Editor {
         this.rendererManager.current.setPixelRatio( window.devicePixelRatio )
     }
 
+    /**
+     * 鼠标监听函数，后续可能会封装
+    */
     onMouseMove(event: MouseEvent) {
         event.preventDefault()
 
