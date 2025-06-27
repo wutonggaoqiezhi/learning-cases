@@ -43,7 +43,7 @@ export default class Editor {
             this.scene.background = texture;
             
             // 设置环境光照（影响物体反射）
-            this.scene.environment = texture;
+            // this.scene.environment = texture;
 
             console.log('HDR texture loaded:', texture);
             
