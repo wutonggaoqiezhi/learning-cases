@@ -6,7 +6,7 @@ export default class CameraManager {
     editor: Editor
 
     all: Camera[]
-    current: Camera
+    current: PerspectiveCamera | OrthographicCamera
 
     constructor(editor: Editor) {
         this.editor = editor
