@@ -12,12 +12,15 @@ import { texture } from 'three/tsl';
 export default class SceneManager {
     editor: Editor
     gui: GUI = new GUI({ width: 300 })
+    activeGUI: any[] = []
 
     all: Scene[] = []
     current: Scene
 
     constructor(editor: Editor) {
         this.editor = editor
+
+        console.log( this.gui )
 
         this.default()
     }
@@ -33,7 +36,6 @@ export default class SceneManager {
         const loader = new RGBELoader()
         loader.setPath(hdrDir)
         loader.loadAsync('chinese_garden_1k.hdr').then((texture) => {
-            console.log('HDR texture loaded:', texture)
             texture.mapping = THREE.EquirectangularReflectionMapping
             this.current.background = texture
             this.current.environment = texture
@@ -68,8 +70,8 @@ export default class SceneManager {
             'the_sky_is_on_fire_4k'
         ]
 
-        this.gui.add(this.current, 'name').name('场景名称')
-        this.gui.add(params, 'hdr', hdrList).name('HDR环境贴图').onChange((value) => {
+        const sceneName = this.gui.add(this.current, 'name').name('场景名称')
+        const hdrEnvList = this.gui.add(params, 'hdr', hdrList).name('HDR环境贴图').onChange((value) => {
             loader.loadAsync(value + '.hdr').then((texture) => {
                 // 设置贴图映射方式
                 texture.mapping = THREE.EquirectangularReflectionMapping
@@ -78,6 +80,38 @@ export default class SceneManager {
             }) 
         })
 
+        this.activeGUI = [sceneName, hdrEnvList]
+
+        // 关闭GUI面板
+        // this.gui.close()
+
         this.current.add(axes, grid)
+    }
+
+    /**
+     * 清除GUI面板
+    */
+    clearPanel() {
+        this.activeGUI.map(item => item.destroy())
+    }
+
+    /**
+     * 转换到指定场景
+    */
+    switchToScene(scene: Scene) {
+        if(this.all.indexOf(scene) != -1) {
+            this.current = scene
+        } else {
+            this.all.push( scene )
+            this.current = scene
+        }
+    }
+
+    /**
+     * 通过场景名字转换到指定场景
+    */
+    switchToSceneByName(sceneName: string) {
+        const scene = this.all.find(scene => scene.name == sceneName)
+        if(scene) this.current = scene
     }
 }
