@@ -5,6 +5,7 @@ import SceneManager from './core/SceneManager'
 import CameraManager from './core/CameraManager'
 import RendererManager from './core/RendererManager'
 import ControlsManager from './core/ControlsManager'
+import LoaderManager from './core/LoaderManager'
 
 /**
  * camera renderer scene light
@@ -18,10 +19,12 @@ export default class Editor {
     cameraManager: CameraManager
     rendererManager: RendererManager
     controlsManager: ControlsManager
+    loaderManager: LoaderManager
 
     constructor(dom?: HTMLElement | null) {
         if(dom) this.dom = dom
 
+        this.loaderManager = new LoaderManager(this)
         this.sceneManager = new SceneManager(this)
         this.cameraManager = new CameraManager(this)
         this.rendererManager = new RendererManager(this)
