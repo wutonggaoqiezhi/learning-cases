@@ -88,6 +88,8 @@ export default class SceneManager {
         return scene
     }
 
+    loadSceneJSON(scene: Scene) {}
+
     /**
      * 转换到指定场景
     */
