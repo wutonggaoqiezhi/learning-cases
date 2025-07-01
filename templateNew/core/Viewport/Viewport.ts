@@ -5,11 +5,10 @@ import Editor from '../../Editor';
 export default class Viewport {
     editor: Editor
     scene: Scene
-    gui: GUI = new GUI({ width: 300 })
+    gui: GUI = new GUI({ width: 300, title: 'Base Info' })
     guiList: any[]
 
     constructor(scene: Scene, editor: Editor) {
-        this.gui.title('Base Info')
         this.scene = scene
         this.editor = editor
     }
