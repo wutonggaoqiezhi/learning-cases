@@ -8,11 +8,10 @@ export default class Viewport {
     gui: GUI = new GUI({ width: 300 })
     guiList: any[]
 
-    constructor(scene: Scene, editor?: Editor) {
+    constructor(scene: Scene, editor: Editor) {
         this.gui.title('Base Info')
-        console.log( this.gui )
         this.scene = scene
-        if(editor) this.editor = editor
+        this.editor = editor
     }
 
     init() {
