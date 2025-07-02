@@ -1,4 +1,5 @@
 export default abstract class Command {
+    public name: string
     public skip: boolean = false;
 
     constructor() { }
