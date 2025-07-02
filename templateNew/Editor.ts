@@ -18,17 +18,15 @@ export default class Editor {
     sceneManager: SceneManager
     cameraManager: CameraManager
     rendererManager: RendererManager
-    controlsManager: ControlsManager
     loaderManager: LoaderManager
 
     constructor(dom?: HTMLElement | null) {
         if(dom) this.dom = dom
 
+        this.cameraManager = new CameraManager(this)
         this.loaderManager = new LoaderManager(this)
         this.sceneManager = new SceneManager(this)
-        this.cameraManager = new CameraManager(this)
         this.rendererManager = new RendererManager(this)
-        this.controlsManager = new ControlsManager(this)
 
         this.stats = new Stats()
         this.stats.dom.setAttribute('class', 'stats')
@@ -53,8 +51,7 @@ export default class Editor {
     */
     render() {
         this.stats.update()
-        this.controlsManager.current.update()
-
+        // this.sceneManager.current.
         this.rendererManager.current.render( this.sceneManager.current, this.cameraManager.current )
     }
 
