@@ -1,7 +1,4 @@
-import * as THREE from 'three'
-
 import Editor from "./Editor"
-import ViewPort from "./ViewPort"
 
 import axios from 'axios'
 

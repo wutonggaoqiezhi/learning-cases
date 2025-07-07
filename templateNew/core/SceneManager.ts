@@ -2,6 +2,7 @@ import GUI from 'three/examples/jsm/libs/lil-gui.module.min.js';
 import Editor from '../Editor';
 import BaseScene from './Scene/BaseScene';
 import DefaultScene from './Scene/DefaultScene';
+import RotationScene from './Scene/RotationScene';
 import { Ray, Raycaster, Quaternion } from 'three';
 
 /**
@@ -98,7 +99,9 @@ export default class SceneManager {
     constructor(editor: Editor) {
         this.editor = editor
 
-        this.current = new DefaultScene(editor).GUI(this.editor.sceneFolder)
+        this.add( new DefaultScene(editor).GUI(this.editor.sceneFolder) )
+        
+        this.current = new RotationScene(editor).GUI(this.editor.sceneFolder)
         this.add( this.current )
 
         editor.sceneManager = this

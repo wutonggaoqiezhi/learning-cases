@@ -36,7 +36,7 @@ export default class Editor {
         new LoaderManager(this)
         new SceneManager(this)
         new RendererManager(this)
-        new ToolManager(this).active('SelectTool')
+        new ToolManager(this)
         new PostProcessingManager(this)
 
         this.stats = new Stats()
