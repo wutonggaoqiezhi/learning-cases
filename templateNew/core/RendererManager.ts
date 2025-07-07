@@ -14,6 +14,7 @@ export default class RendererManager {
 
     constructor(editor: Editor) {
         this.editor = editor
+        editor.rendererManager = this
 
         this.current = this.default()
         this.all = [this.current]

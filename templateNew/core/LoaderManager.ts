@@ -9,6 +9,7 @@ export default class LoaderManager {
 
     constructor(editor: Editor) {
         this.editor = editor
+        editor.loaderManager = this
     }
 
     /**

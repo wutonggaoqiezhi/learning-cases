@@ -17,7 +17,7 @@ export default class DefaultScene extends BaseScene {
             new THREE.BoxGeometry(1, 1, 1),
             new THREE.MeshBasicMaterial({
                 color: 0xffffff * Math.random(),
-                depthTest: true
+                side: THREE.DoubleSide
             })
         )
 

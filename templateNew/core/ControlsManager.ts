@@ -46,11 +46,12 @@ export default class ControlsManager {
      * 添加监听函数
     */
     addTransformListener() {
-        // 操作时禁用场景轨道旋转
         this.Transform.addEventListener( 'dragging-changed', (event) => {
             // 可在此处添加命令（translateCommand | scaleCommand | rotateCommand）
             console.log(this.Transform.object)
+            // 操作时禁用场景轨道旋转
             this.Orbit.enabled = !event.value
+
             if( event.value ) {
                 if(this.Transform.mode == 'rotate') this._euler.copy(this.Transform.object.rotation)
                 if(this.Transform.mode == 'scale') this._vector3.copy(this.Transform.object.scale)
@@ -79,6 +80,7 @@ export default class ControlsManager {
                 }
             }
         })
+        
         // 状态改变就会触发
         // this.Transform.addEventListener('change', () => {
         //     console.log('Transform change')

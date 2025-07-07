@@ -2,6 +2,7 @@ import GUI from 'three/examples/jsm/libs/lil-gui.module.min.js';
 import Editor from '../Editor';
 import BaseScene from './Scene/BaseScene';
 import DefaultScene from './Scene/DefaultScene';
+import { Ray, Raycaster } from 'three';
 
 /**
  * 场景控制器
@@ -9,21 +10,19 @@ import DefaultScene from './Scene/DefaultScene';
 */
 export default class SceneManager {
     editor: Editor
-    gui: GUI = new GUI({width: 300, title: 'Scene List'})
-    guiFolder: GUI = this.gui.addFolder('Scene Info')
     sceneMap: Map<string, BaseScene> = new Map()
     current: BaseScene
+    ray: Ray = new Ray()
+    caster: Raycaster = new Raycaster()
 
     constructor(editor: Editor) {
         this.editor = editor
 
-        this.current = new DefaultScene(editor).GUI(this.guiFolder)
+        this.current = new DefaultScene(editor).GUI(this.editor.sceneFolder)
         this.add( this.current )
 
-        // TODO:将此处gui置于GUI面板最上方
-        this.gui.add(this.current, 'name', Array.from(this.sceneMap.keys())).name('Scene Name').onChange((value) => {
-            this.switchToScene(this.sceneMap.get(value)!)
-        })
+        editor.sceneManager = this
+        editor.addGUI()
     }
 
     /**
