@@ -8,6 +8,8 @@ import { GridHelper } from 'three';
  * 通过各种方式操纵Mesh旋转
 */
 export default class RotationScene extends BaseScene {
+    cube: THREE.Mesh
+
     constructor(editor: Editor) {
         super(editor)
 
@@ -21,15 +23,21 @@ export default class RotationScene extends BaseScene {
         grid.material.depthWrite = false
         grid.material.transparent = true
 
-        const cube = new THREE.Mesh(
+        this.cube = new THREE.Mesh(
             new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({
-                color: 0xffffff * Math.random(),
-                side: THREE.DoubleSide
-            })
+            [
+                new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() }),
+                new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() }),
+                new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() }),
+                new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() }),
+                new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() }),
+                new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() }),
+            ]
         )
 
-        this.add(axes, grid, cube)
+        console.log( this.cube )
+
+        this.add(axes, grid, this.cube)
     }
 
     /**
@@ -38,6 +46,32 @@ export default class RotationScene extends BaseScene {
     GUI(gui: GUI) {
         super.GUI(gui)
 
+        const API = {
+            EulerX: 0,
+            EulerY: 0,
+            EulerZ: 0,
+        }
+
+        const _Eluer = new THREE.Euler()
+        const EulerFunc = (value: number, axes: string) => {
+            console.log( axes, value )
+            if(axes == 'X') _Eluer.x = value
+            if(axes == 'Y') _Eluer.y = value
+            if(axes == 'Z') _Eluer.z = value
+            this.cube.rotation.copy( _Eluer )
+        }
+
+        this.gui.add(this.cube.rotation, 'x', -Math.PI, Math.PI).name('Rotation.x')
+        this.gui.add(this.cube.rotation, 'y', -Math.PI, Math.PI).name('Rotation.y')
+        this.gui.add(this.cube.rotation, 'z', -Math.PI, Math.PI).name('Rotation.z')
+
+        this.gui.add(API, 'EulerX', -Math.PI, Math.PI).name('Euler.x').onChange( value => EulerFunc(value, 'X') )
+        this.gui.add(API, 'EulerY', -Math.PI, Math.PI).name('Euler.y').onChange( value => EulerFunc(value, 'Y') )
+        this.gui.add(API, 'EulerZ', -Math.PI, Math.PI).name('Euler.z').onChange( value => EulerFunc(value, 'Z') )
+
+        this.gui.parent.addFolder('Quaternion')
+        console.log( this.gui.parent )
+        
         return this
     }
 }

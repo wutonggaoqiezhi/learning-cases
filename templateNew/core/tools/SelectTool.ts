@@ -38,6 +38,8 @@ export class SelectTool implements Tool {
     */
     deactive(): void {
         this.updateStatus(ToolState.Idle)
+        this.editor.dom.removeEventListener('mousedown', this.onMouseDown.bind(this))
+        this.editor.dom.removeEventListener('mouseup', this.onMouseUp.bind(this))
     }
 
     /**
@@ -58,6 +60,7 @@ export class SelectTool implements Tool {
             this.state === ToolState.Error ? 'not-allowed' :
             'default'
     
+        console.log( cursorStyle )
         document.body.style.cursor = cursorStyle;
     }
 
