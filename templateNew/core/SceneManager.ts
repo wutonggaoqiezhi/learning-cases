@@ -99,7 +99,7 @@ export default class SceneManager {
     constructor(editor: Editor) {
         this.editor = editor
 
-        this.add( new DefaultScene(editor).GUI(this.editor.sceneFolder) )
+        this.add( new DefaultScene(editor) )
         
         this.current = new RotationScene(editor).GUI(this.editor.sceneFolder)
         this.add( this.current )

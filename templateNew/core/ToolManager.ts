@@ -12,6 +12,7 @@ export default class ToolManager {
         this.toolMap.set('SelectTool', new SelectTool(editor))
         const gui = editor.toolFolder
         gui.add({selected: ToolType[this.current]}, 'selected', Object.values(ToolType).filter(value => typeof value == 'string')).onChange((index) => {
+            this.deactive(ToolType[this.current])
             this.active(index)
         })
     }
